@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoxBox - Funny Funs</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; margin: 40px; background-color: #F9F3DF; color: #333; 
+        }
+        header {  
+            background: #FF6F61; 
+            padding: 10px 20px; 
+            color: white; 
+            text-align: center; 
+            border-radius: 5px;
+        }
+        nav ul {
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        button {
+            background-color: #FF6F61; 
+            color: white; 
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        section {
+            margin-top: 20px; 
+        }
+        .project {
+            margin: 20px 0px;
+            padding: 10px;
+            background-color: #FFD3B6;
+            border: 1px solid #FF6F61;
+            border-radius: 5px;
+            color: #333;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #FF6F61; 
+            color: white; 
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to FoxBox</h1>
+        <p>Discover fun and interesting projects</p>
+        <p>Every project is named fun or funs</p>
+    </header>
+    <nav>
+        <ul>
+            <li><button onclick="window.open('https://t.me/+4zqmMf_XvP81NDZi');">Visit Telegram</button></li>
+        </ul>
+    </nav>
+    <section>
+        <h2>All our Projects</h2>
+        <div id="project-list">
+            <!-- Projects will be added here by JavaScript -->
+        </div>
+        <p>More funs are coming soon.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 FoxBox. All rights reserved.</p>
+    </footer>
+    <script>
+        const projects = [
+            {
+                color: "#000000",
+                title: "Liminal Humor",
+                made: "made with FoxBox",
+                miniText: "💾 Liminal Humor",
+                path: "children/liminal_humor/page.html"
+            },
+            {
+                color: "#000000",
+                title: "Eventa Speak",
+                made: "made with FoxBox",
+                miniText: "💾 Eventa Speak 1.0v",
+                path: "error.html"
+            }
+        ];
+
+        const projectListElement = document.getElementById('project-list');
+
+        projects.forEach(project => {
+            const div = document.createElement('div');
+            div.className = 'project';
+            div.style.color = project.color;
+            div.innerHTML = `<strong title="${project.miniText}">${project.title}</strong><p>${project.made}</p>`;
+            
+            const buttonOpen = document.createElement('button');
+            buttonOpen.innerText = 'Open';
+            buttonOpen.onclick = function() { 
+                window.open(project.path); 
+            };
+            div.appendChild(buttonOpen);
+
+            projectListElement.appendChild(div);
+        });
+    </script>
+</body>
+</html>

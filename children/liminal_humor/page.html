@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liminal Humor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 id="title">LIMINAL HUMOR</h1>
+    <div id="description">
+        Scroll infinite in web-space named Liminal Humor
+    </div>
+
+    <div id="infinite-container"></div>
+
+    <script>
+        const title = document.getElementById('title');
+const description = document.getElementById('description');
+const container = document.getElementById('infinite-container');
+let scrolled = false;
+
+const liminalData = [
+    { "color": "#FF6347", "text": "This is not a place of honor.", "font": "Courier New, Courier, monospace" },
+    { "color": "#FF6347", "text": "How can we see?", "font": "Courier New, Courier, monospace" },
+    { "color": "#FF6347", "text": "If at the earth at start a comet with bacteria throws in our old earth, was it only in the earth or in other planets too?", "font": "Courier New, Courier, monospace" },
+    { "color": "#4682B4", "text": "There is nothing worth here.", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#4682B4", "text": "Can AI fight the world?", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#4682B4", "text": "Does the place look familiar?", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#32CD32", "text": "The past is forgotten, yet it lingers.", "font": "Arial, sans-serif" },
+    { "color": "#32CD32", "text": "Are we in the Matrix? Or are we a line of code?", "font": "Arial, sans-serif" },
+    { "color": "#32CD32", "text": "Just ignore them.", "font": "Arial, sans-serif" },
+    { "color": "#32CD32", "text": "Ignore them.", "font": "Arial, sans-serif" },
+    { "color": "#FFD700", "text": "...", "font": "Times New Roman, Times, serif" },
+    { "color": "#8A2BE2", "text": "Are you sure you should be here?", "font": "Georgia, serif" },
+    { "color": "#8A2BE2", "text": "Does it look familiar?", "font": "Georgia, serif" },
+    { "color": "#FF69B4", "text": "Time has no meaning here.", "font": "Courier New, Courier, monospace" },
+    { "color": "#000000", "text": "Enter the void.", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#000064", "text": "Try to scroll to the start.", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#454545", "text": "Up", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#00CED1", "text": "HOLD ON! You forgot something.", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#000000", "text": "01001010 01110101 01110011 01110100 00100000 01101001 01100111 01101110 01101111 01110010 01100101 00100000 01110100 01101000 01100101 01101101 00101110", "font": "Comic Sans MS, Comic Sans, cursive" },
+    { "color": "#FF4500", "text": "You are alone, but not lonely.", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "One Way Or an Other.", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "Are you alive?", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "Drive to the red garage.", "font": "Arial, sans-serif" },
+    { "color": "#000000", "text": "look into the void hole", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "The code employs a numeric pair system where each pair of digits represents a specific letter of the alphabet. The numbering starts from 11 for 'a' and continues sequentially with each letter assigned to increasing pairs of numbers. Each pair has the tens digit ranging from 1 to 4 and the ones digit cycling from 1 to 4 before increasing the tens digit. For example, 'a' is 11, 'b' is 12, 'c' is 13, 'd' is 14, then 'e' jumps to 21, continuing in this manner up to 'p' at 44. A special character % represents a space to distinguish between words. Using this coding scheme, the phrase hello world translates to a series of numbers:24 21 34 34 43 % 42 43 41 34 14, where each pair and symbol directly maps to the corresponding letter or space in the phrase.", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "skydrops aren't cooling you'r scale matters", "font": "Arial, sans-serif" },
+    { "color": "#ff00ff", "text": "Mish-Massage : Do not forgot that you are in you'r live!", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "You are alone, but not lonely.", "font": "Arial, sans-serif" },
+    { "color": "#FF4500", "text": "BEHIND YOU", "font": "Arial, sans-serif" },
+    { "color": "#666000", "text": "1 Nein!", "font": "Arial, sans-serif" },
+    { "color": "#808080", "text": "2 ich", "font": "Arial, sans-serif" },
+    { "color": "#808080", "text": "3 will", "font": "Arial, sans-serif" },
+    { "color": "#808080", "text": "4 nicht", "font": "Arial, sans-serif" },
+    { "color": "#808080", "text": "5 sagen", "font": "Arial, sans-serif" },
+    { "color": "#666000", "text": "6 *flesh in closer", "font": "Arial, sans-serif" },
+    { "color": "#666000", "text": "Arirals are following us?", "font": "Arial, sans-serif" },
+    { "color": "#666000", "text": "Mini-Mission-Massage : Pick this color and with Hex code you can know who follows you.", "font": "Arial, sans-serif" },
+];
+
+window.addEventListener('scroll', () => {
+    if (!scrolled && window.scrollY > 0) {
+        scrolled = true;
+        title.remove();
+        description.remove();
+        createRandomDiv();
+    }
+
+    const divs = document.querySelectorAll('.full-screen-div');
+    divs.forEach(div => {
+        if (isDivOutOfView(div)) {
+            div.remove();
+        }
+    });
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        createRandomDiv();
+    }
+});
+
+function createRandomDiv() {
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('full-screen-div');
+
+    const randomData = liminalData[Math.floor(Math.random() * liminalData.length)];
+
+    newDiv.style.backgroundColor = randomData.color;
+    newDiv.style.fontFamily = randomData.font;
+    newDiv.textContent = randomData.text;
+
+    container.appendChild(newDiv);
+}
+
+function isDivOutOfView(div) {
+    const rect = div.getBoundingClientRect();
+    return rect.bottom < 0 || rect.top > window.innerHeight;
+}
+
+    </script>
+</body>
+</html>
